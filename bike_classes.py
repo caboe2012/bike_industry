@@ -1,13 +1,14 @@
 import random
 
+''' Create the Base Bicycle Classes'''
 class Bicycle(object):
     def __init__(self,model,weight,cost):
         self.model = model
         self.weight = weight
         self.cost = cost
-        
+
 class Bike_Shop(object):
-    def __init__(self, name, inventory = [], margin = .2, profit = 0, budget = 10000):
+    def __init__(self, name, inventory = {}, margin = .2, profit = 0, budget = 10000):
         self.name = name
         self.inventory = inventory
         self.margin = margin
@@ -29,15 +30,16 @@ class Bike_Shop(object):
             print "Sorry. All of our bikes are on back-order."
             print "The next shipment should arrive next Wednesday."
         else:
-            print "The folowing {} bikes are currently in stock at {}:".format(len(self.inventory),self.name)
-            print ", ".join([each.name for each in self.inventory])
+            print "The folowing {} models are currently in stock at {}:".format(len(self.inventory),self.name)
+            for k,v in self.inventory.items():
+                print "- {} {} bikes".format(v, k.model)
     def profit(self):
         print "Annual profit for the year-to-date is ${} USD.".format(self.profit)
     
     def spend(self):
         print "Annual spend for the year-to-date is ${} USD.".format(self.spend)
 
-        
+
 class Customers(object):
     def __init__(self,name,fund = 200,rides = []):
         self.name = name
